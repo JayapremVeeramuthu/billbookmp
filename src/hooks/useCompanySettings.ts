@@ -16,7 +16,7 @@ export function useCompanySettings() {
         return;
       }
 
-      const res = await fetch('/api/settings');
+      const res = await fetch(`/api/settings`);
       if (!res.ok) throw new Error('Failed to fetch settings');
       const data = await res.json();
       if (!data) throw new Error('No settings found');

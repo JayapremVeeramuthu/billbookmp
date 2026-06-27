@@ -17,7 +17,7 @@ export function useCustomers() {
         return;
       }
 
-      const res = await fetch('/api/customers');
+      const res = await fetch(`/api/customers`);
       if (!res.ok) {
         const err = await res.json();
         throw new Error(err.error || 'Failed to fetch customers');
@@ -43,7 +43,7 @@ export function useCustomers() {
       return created;
     }
 
-    const res = await fetch('/api/customers', {
+    const res = await fetch(`/api/customers`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(customer),

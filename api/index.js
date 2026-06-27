@@ -9,10 +9,16 @@ import { v2 as cloudinary } from 'cloudinary';
 dotenv.config({ override: true });
 
 const app = express();
-const port = 3001;
+const port = process.env.PORT || 3001;
 
 // Middleware
-app.use(cors());
+const allowedOrigins = [
+  'http://localhost:5173',
+  'https://billbookmp.vercel.app',
+  process.env.FRONTEND_URL
+].filter(Boolean);
+
+app.use(cors({ origin: allowedOrigins, credentials: true }));
 app.use(express.json());
 
 // Initialize Supabase
@@ -400,23 +406,4 @@ app.post('/api/upload', upload.single('file'), async (req, res) => {
   }
 });
 
-// Start the server
-const server = app.listen(port, () => {
-  const addr = server.address();
-  if (addr) {
-    console.log(`[Backend] Strict Supabase Server (with Cloudinary) running on http://localhost:${addr.port}`);
-  }
-});
-
-server.on('error', (err) => {
-  if (err.code === 'EADDRINUSE') {
-    console.error(`CRITICAL ERROR: Port ${port} is already in use.`);
-    console.error(`Please kill the process using port ${port} or change the port.`);
-  } else {
-    console.error(`[Backend] Server error:`, err);
-  }
-  process.exit(1);
-});
-
-
-process.on('exit', (code) => { console.trace('Exiting with code:', code); });
+export default app;

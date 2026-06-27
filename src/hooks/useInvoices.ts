@@ -97,7 +97,7 @@ export function useInvoices(filters?: InvoiceFilters) {
       return created;
     }
 
-    const res = await fetch('/api/invoices', {
+    const res = await fetch(`/api/invoices`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(invoice),
@@ -153,7 +153,7 @@ export function useInvoices(filters?: InvoiceFilters) {
       return String(demoInvoices.getNextNumber());
     }
 
-    const res = await fetch('/api/invoices?limit=1'); // Backend already orders by created_at desc
+    const res = await fetch(`/api/invoices?limit=1`); // Backend already orders by created_at desc
     if (!res.ok) return '393';
     const data = await res.json();
 

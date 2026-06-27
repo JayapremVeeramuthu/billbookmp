@@ -26,7 +26,7 @@ export const uploadImage = async (
   formData.append('bucket', bucket);
   formData.append('path', path);
 
-  const res = await fetch('/api/upload', {
+  const res = await fetch(`/api/upload`, {
     method: 'POST',
     body: formData,
   });
