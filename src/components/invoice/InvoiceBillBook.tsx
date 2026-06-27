@@ -21,8 +21,10 @@ export const InvoiceBillBook = forwardRef<HTMLDivElement, InvoiceBillBookProps>(
     }
 
     return (
-      <div ref={ref} className="bill-book-wrapper">
-        <div className="bill-book">
+      <div className="responsive-bill-container">
+        <div className="responsive-bill-scaler">
+          <div ref={ref} className="bill-book-wrapper">
+            <div className="bill-book">
           {/* ═══ OUTER BORDER ═══ */}
           <div className="bill-outer-border">
             <div className="bill-inner-border">
@@ -163,6 +165,8 @@ export const InvoiceBillBook = forwardRef<HTMLDivElement, InvoiceBillBookProps>(
           </div>
         </div>
       </div>
+    </div>
+  </div>
     );
   }
 );

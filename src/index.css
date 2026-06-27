@@ -228,6 +228,8 @@ body {
   margin: 0 0 2px;
 }
 
+
+
 .bill-customer-name {
   font-size: 12px;
   font-weight: 700;
@@ -712,6 +714,7 @@ body {
 }
 
 .data-table th {
+  white-space: nowrap;
   text-align: left;
   font-size: 11px;
   font-weight: 600;
@@ -728,6 +731,7 @@ body {
 }
 
 .data-table td {
+  white-space: nowrap;
   padding: 12px 16px;
   font-size: 14px;
   border-bottom: 1px solid #f3f4f6;
@@ -780,3 +784,24 @@ body {
 .dark .badge-success { background: #064e3b; color: #6ee7b7; }
 .dark .badge-warning { background: #78350f; color: #fcd34d; }
 .dark .badge-info { background: #1e3a5f; color: #93c5fd; }
+
+
+/* ─── Responsive Mobile Preview ────────────────────────── */
+.responsive-bill-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.responsive-bill-scaler {
+  transform-origin: top center;
+  transition: transform 0.3s ease;
+}
+
+@media (max-width: 850px) {
+  .responsive-bill-scaler {
+    transform: scale(calc((100vw - 48px) / 794));
+    margin-bottom: calc(-297mm * (1 - ((100vw - 48px) / 794)));
+  }
+}

@@ -214,8 +214,8 @@ export function CreateInvoice() {
         title="Create Invoice"
         subtitle={`Invoice #${invoiceNumber}`}
         actions={
-          <div className="flex gap-2 no-print">
-            <button onClick={() => navigate('/invoices')} className="btn btn-secondary btn-sm">
+          <div className="flex flex-wrap gap-2 no-print w-full sm:w-auto mt-2 sm:mt-0">
+            <button onClick={() => navigate('/invoices')} className="btn btn-secondary btn-sm flex-1 sm:flex-none">
               <ArrowLeft className="w-4 h-4" /> Back
             </button>
             <button onClick={() => setShowPreview(!showPreview)} className="btn btn-secondary btn-sm">
@@ -229,8 +229,8 @@ export function CreateInvoice() {
         {showPreview ? (
           /* ═══ PREVIEW MODE ═══ */
           <div>
-            <div className="flex gap-3 mb-4 no-print">
-              <button onClick={handlePrint} className="btn btn-secondary btn-sm">
+            <div className="flex flex-wrap gap-3 mb-4 no-print">
+              <button onClick={handlePrint} className="btn btn-secondary btn-sm flex-1 sm:flex-none">
                 <Printer className="w-4 h-4" /> Print
               </button>
               <button onClick={handleDownloadPDF} className="btn btn-secondary btn-sm">
@@ -389,7 +389,7 @@ export function CreateInvoice() {
               </div>
 
               <div className="overflow-x-auto">
-                <table className="w-full">
+                <table className="w-full min-w-[600px]">
                   <thead>
                     <tr className="border-b border-gray-200 dark:border-gray-700">
                       <th className="text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase p-2 w-12">S.No</th>

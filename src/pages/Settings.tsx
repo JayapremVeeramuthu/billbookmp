@@ -192,7 +192,7 @@ export function Settings() {
           </div>
 
           <div className="flex justify-end">
-            <button type="submit" disabled={saving} className="btn btn-primary">
+            <button type="submit" disabled={saving} className="btn btn-primary w-full md:w-auto">
               <Save className="w-4 h-4" /> {saving ? 'Saving...' : 'Save All Changes'}
             </button>
           </div>

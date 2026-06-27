@@ -114,13 +114,13 @@ export function InvoiceDetail() {
       <div className="p-6">
         {/* Action Bar */}
         <div className="flex flex-wrap gap-2 mb-6 no-print">
-          <button onClick={handlePrint} className="btn btn-secondary btn-sm">
+          <button onClick={handlePrint} className="btn btn-secondary btn-sm flex-1 sm:flex-none">
             <Printer className="w-4 h-4" /> Print
           </button>
-          <button onClick={handleDownloadPDF} className="btn btn-secondary btn-sm">
+          <button onClick={handleDownloadPDF} className="btn btn-secondary btn-sm flex-1 sm:flex-none">
             <Download className="w-4 h-4" /> Download PDF
           </button>
-          <button onClick={handleDownloadQR} className="btn btn-secondary btn-sm">
+          <button onClick={handleDownloadQR} className="btn btn-secondary btn-sm flex-1 sm:flex-none">
             <QrCode className="w-4 h-4" /> Download QR
           </button>
           <button
@@ -139,11 +139,11 @@ export function InvoiceDetail() {
                 },
               },
             })}
-            className="btn btn-secondary btn-sm"
+            className="btn btn-secondary btn-sm flex-1 sm:flex-none"
           >
             <Copy className="w-4 h-4" /> Duplicate
           </button>
-          <button onClick={() => navigate(`/invoices/${invoice.id}/edit`)} className="btn btn-primary btn-sm">
+          <button onClick={() => navigate(`/invoices/${invoice.id}/edit`)} className="btn btn-primary btn-sm flex-1 sm:flex-none">
             <Edit className="w-4 h-4" /> Edit
           </button>
         </div>
