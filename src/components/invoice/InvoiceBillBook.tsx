@@ -11,7 +11,8 @@ interface InvoiceBillBookProps {
 
 export const InvoiceBillBook = forwardRef<HTMLDivElement, InvoiceBillBookProps>(
   ({ invoice, settings, domain }, ref) => {
-    const qrUrl = `${domain || settings.domain || 'http://localhost:5173'}/view/${invoice.invoice_number}`;
+    const publicUrl = typeof window !== 'undefined' ? window.location.origin : '';
+    const qrUrl = `${publicUrl}/view/${invoice.invoice_number}`;
 
     // Ensure we have at least 10 rows for the table (to match physical bill book)
     const tableRows = [...(invoice.items || [])];

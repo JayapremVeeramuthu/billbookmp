@@ -133,8 +133,8 @@ export function CreateInvoice() {
         quotationImagePublicId = result.public_id;
       }
 
-      const domain = settings?.domain || 'http://localhost:5173';
-      const qrUrl = `${domain}/view/${invoiceNumber}`;
+      const publicUrl = typeof window !== 'undefined' ? window.location.origin : '';
+      const qrUrl = `${publicUrl}/view/${invoiceNumber}`;
 
       const invoiceData: Partial<Invoice> = {
         invoice_number: invoiceNumber,

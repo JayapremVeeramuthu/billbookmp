@@ -94,7 +94,8 @@ export function InvoiceDetail() {
 
   if (!invoice || !settings) return null;
 
-  const qrUrl = `${settings.domain || 'http://localhost:5173'}/view/${invoice.invoice_number}`;
+  const publicUrl = typeof window !== 'undefined' ? window.location.origin : '';
+  const qrUrl = `${publicUrl}/view/${invoice.invoice_number}`;
 
   return (
     <div>

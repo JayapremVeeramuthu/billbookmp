@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS company_settings (
   ifsc_code TEXT DEFAULT '',
   branch TEXT DEFAULT '',
   logo_url TEXT DEFAULT '',
-  domain TEXT DEFAULT 'http://localhost:5173',
+  domain TEXT DEFAULT '',
   updated_at TIMESTAMPTZ DEFAULT now()
 );
 

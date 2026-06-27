@@ -13,7 +13,6 @@ const port = process.env.PORT || 3001;
 
 // Middleware
 const allowedOrigins = [
-  'http://localhost:5173',
   'https://billbookmp.vercel.app',
   process.env.FRONTEND_URL
 ].filter(Boolean);
