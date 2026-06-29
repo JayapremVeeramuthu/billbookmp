@@ -14,11 +14,7 @@ export const InvoiceBillBook = forwardRef<HTMLDivElement, InvoiceBillBookProps>(
     const publicUrl = typeof window !== 'undefined' ? window.location.origin : '';
     const qrUrl = `${publicUrl}/view/${invoice.invoice_number}`;
 
-    // Ensure we have at least 10 rows for the table (to match physical bill book)
-    const tableRows = [...(invoice.items || [])];
-    while (tableRows.length < 10) {
-      tableRows.push({ id: `empty-${tableRows.length}`, sno: 0, particulars: '', quantity: 0, rate: 0, amount: 0 });
-    }
+    const tableRows = invoice.items || [];
 
     return (
       <div className="responsive-bill-container">
@@ -87,28 +83,30 @@ export const InvoiceBillBook = forwardRef<HTMLDivElement, InvoiceBillBookProps>(
               </div>
 
               {/* ═══ PARTICULARS TABLE ═══ */}
-              <table className="bill-table">
-                <thead>
-                  <tr>
-                    <th className="bill-th bill-th-sno">S.No</th>
-                    <th className="bill-th bill-th-particulars">Particulars</th>
-                    <th className="bill-th bill-th-qty">Qty</th>
-                    <th className="bill-th bill-th-rate">Rate</th>
-                    <th className="bill-th bill-th-amount">Amount (₹)</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {tableRows.map((item, index) => (
-                    <tr key={item.id || index}>
-                      <td className="bill-td bill-td-sno">{item.sno || ''}</td>
-                      <td className="bill-td bill-td-particulars">{item.particulars || ''}</td>
-                      <td className="bill-td bill-td-qty">{item.quantity ? item.quantity : ''}</td>
-                      <td className="bill-td bill-td-rate">{item.rate ? formatNumber(item.rate) : ''}</td>
-                      <td className="bill-td bill-td-amount">{item.amount ? formatNumber(item.amount) : ''}</td>
+              <div className="bill-table-container">
+                <table className="bill-table">
+                  <thead>
+                    <tr>
+                      <th className="bill-th bill-th-sno">S.No</th>
+                      <th className="bill-th bill-th-particulars">Particulars</th>
+                      <th className="bill-th bill-th-qty">Qty</th>
+                      <th className="bill-th bill-th-rate">Rate</th>
+                      <th className="bill-th bill-th-amount">Amount (₹)</th>
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {tableRows.map((item, index) => (
+                      <tr key={item.id || index}>
+                        <td className="bill-td bill-td-sno">{item.sno || ''}</td>
+                        <td className="bill-td bill-td-particulars">{item.particulars || ''}</td>
+                        <td className="bill-td bill-td-qty">{item.quantity ? item.quantity : ''}</td>
+                        <td className="bill-td bill-td-rate">{item.rate ? formatNumber(item.rate) : ''}</td>
+                        <td className="bill-td bill-td-amount">{item.amount ? formatNumber(item.amount) : ''}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
 
               {/* ═══ TOTALS SECTION ═══ */}
               <div className="bill-totals">

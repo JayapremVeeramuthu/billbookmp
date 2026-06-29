@@ -258,7 +258,11 @@ body {
 .bill-table {
   width: 100%;
   border-collapse: collapse;
+}
+
+.bill-table-container {
   flex: 1;
+  display: block;
 }
 
 .bill-th {
@@ -791,7 +795,8 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  overflow: hidden;
+  overflow: auto; /* Allow pinch zoom and ensure no clipping */
+  padding-bottom: 24px;
 }
 
 .responsive-bill-scaler {
@@ -799,9 +804,11 @@ body {
   transition: transform 0.3s ease;
 }
 
-@media (max-width: 850px) {
+@media (max-width: 826px) {
   .responsive-bill-scaler {
-    transform: scale(calc((100vw - 48px) / 794));
-    margin-bottom: calc(-297mm * (1 - ((100vw - 48px) / 794)));
+    /* Scale strictly to viewport width to prevent horizontal overflow */
+    transform: scale(calc((100vw - 32px) / 794));
+    /* Subtract the scaled height difference to prevent huge empty whitespace below */
+    margin-bottom: calc(-297mm * (1 - ((100vw - 32px) / 794)));
   }
 }
