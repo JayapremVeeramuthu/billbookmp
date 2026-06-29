@@ -1,5 +1,6 @@
 import { Outlet } from 'react-router-dom';
 import { Sidebar } from './Sidebar';
+import { PWAInstallBanner } from '../common/PWAInstallBanner';
 
 export function AppLayout() {
   return (
@@ -8,6 +9,7 @@ export function AppLayout() {
       <main className="md:ml-64 min-h-screen transition-all duration-300">
         <Outlet />
       </main>
+      <PWAInstallBanner />
     </div>
   );
 }

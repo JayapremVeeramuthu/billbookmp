@@ -8,8 +8,10 @@ import {
   Settings,
   ChevronLeft,
   Menu,
+  Download,
 } from 'lucide-react';
 import { useState, useEffect } from 'react';
+import { usePWA } from '../../hooks/usePWA';
 
 const navItems = [
   { path: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
@@ -23,6 +25,7 @@ const navItems = [
 export function Sidebar() {
   const [collapsed, setCollapsed] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { isInstallable, isStandalone, installApp } = usePWA();
 
   useEffect(() => {
     const handleToggle = () => setMobileOpen(prev => !prev);
@@ -104,6 +107,23 @@ export function Sidebar() {
             <span className={collapsed ? 'md:hidden' : ''}>{item.label}</span>
           </NavLink>
         ))}
+        {isInstallable && !isStandalone && (
+          <button
+            onClick={() => {
+              installApp();
+              handleLinkClick();
+            }}
+            className={`
+              w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all duration-200
+              text-blue-600 dark:text-blue-400 hover:bg-blue-50 dark:hover:bg-blue-950/30 hover:text-blue-700 dark:hover:text-blue-300
+              ${collapsed ? 'md:justify-center md:px-2' : ''}
+              cursor-pointer border-none bg-transparent text-left
+            `}
+          >
+            <Download className="w-5 h-5 flex-shrink-0" />
+            <span className={collapsed ? 'md:hidden' : ''}>Install App</span>
+          </button>
+        )}
       </nav>
 
     </aside>
