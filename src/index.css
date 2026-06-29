@@ -795,20 +795,23 @@ body {
   width: 100%;
   display: flex;
   justify-content: center;
-  overflow: auto; /* Allow pinch zoom and ensure no clipping */
   padding-bottom: 24px;
-}
-
-.responsive-bill-scaler {
-  transform-origin: top center;
-  transition: transform 0.3s ease;
+  --scale: 1;
 }
 
 @media (max-width: 826px) {
-  .responsive-bill-scaler {
-    /* Scale strictly to viewport width to prevent horizontal overflow */
-    transform: scale(calc((100vw - 32px) / 794));
-    /* Subtract the scaled height difference to prevent huge empty whitespace below */
-    margin-bottom: calc(-297mm * (1 - ((100vw - 32px) / 794)));
+  .responsive-bill-container {
+    --scale: calc((100vw - 32px) / 794);
   }
+}
+
+.responsive-bill-scaler {
+  width: calc(794px * var(--scale));
+  margin-bottom: calc(-297mm * (1 - var(--scale)));
+}
+
+.responsive-bill-scaler > div {
+  transform-origin: top left;
+  transform: scale(var(--scale));
+  width: 794px;
 }
